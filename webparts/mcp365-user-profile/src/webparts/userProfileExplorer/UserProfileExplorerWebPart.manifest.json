@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "f1a2b3c4-d5e6-7890-abcd-1234567890ab",
+  "alias": "UserProfileExplorerWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "MCP365 Explorer" },
+    "title": { "default": "MCP365: User Profile" },
+    "description": { "default": "Interactive explorer for the M365 MCP User Profile server" },
+    "officeFabricIconFontName": "ContactCard",
+    "properties": {
+      "environmentId": ""
+    }
+  }]
+}

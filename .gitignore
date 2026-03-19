@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+lib/
+dist/
+release/
+temp/
+sharepoint/solution/*.sppkg
+
+# IDE
+.vs/
+*.suo
+*.user
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SPFx
+*.scss.ts

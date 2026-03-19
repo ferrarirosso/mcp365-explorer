@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-user-profile-client-side-solution",
+    "id": "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Agent 365 Tools",
+        "scope": "McpServers.Me.All"
+      }
+    ],
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "MCP365 Explorer: User Profile Server"
+      },
+      "longDescription": {
+        "default": "Interactive explorer for the M365 MCP User Profile server. Test and discover the 5 User Profile tools."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 User Profile Explorer",
+        "description": "Activates the MCP365 User Profile Explorer web part.",
+        "id": "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-user-profile.sppkg"
+  }
+}

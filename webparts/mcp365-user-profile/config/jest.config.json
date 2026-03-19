@@ -1,0 +1,6 @@
+{
+  "extends": "@microsoft/spfx-web-build-rig/profiles/default/config/jest.config.json",
+  "moduleNameMapper": {
+    "^UserProfileExplorerWebPartStrings$": "<rootDir>/src/webparts/userProfileExplorer/loc/__mocks__/UserProfileExplorerWebPartStrings.js"
+  }
+}
