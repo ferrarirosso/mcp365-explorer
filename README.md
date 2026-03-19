@@ -45,8 +45,6 @@ Open-source SPFx webparts for exploring and testing the Microsoft 365 MCP server
 3. **Power Platform Environment ID** — From [Power Platform admin center](https://admin.powerplatform.microsoft.com/). See [how to find it](https://learn.microsoft.com/en-us/power-platform/admin/determine-org-id-name).
 4. **Node.js 22+** and SPFx 1.22
 
-Full setup details: [GriMoire prerequisites guide](https://grimoire-hie.github.io/docs/getting-started/prerequisites)
-
 ## Quick Start
 
 ```bash
