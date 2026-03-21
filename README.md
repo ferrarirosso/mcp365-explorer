@@ -12,9 +12,9 @@
 
 ## Summary
 
-Open-source SPFx webparts for exploring and testing the Microsoft 365 MCP servers ([Agents 365 Tools](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview)). One webpart per server, each accompanied by a [blog post](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/).
+Open-source SPFx webparts for exploring and testing the Microsoft 365 Work IQ MCP servers ([Agents 365 Tools](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview)). One webpart per server, each accompanied by a [blog post](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/).
 
-**Key finding:** You can call the Agent 365 MCP servers **directly from an SPFx webpart** — no backend, no Azure Functions proxy, no additional infrastructure. Just `fetch`, a bearer token from `AadTokenProvider`, and the JSON-RPC protocol.
+**Key finding:** You can call the Work IQ MCP servers **directly from an SPFx webpart** — no backend, no Azure Functions proxy, no additional infrastructure. Just `fetch`, a bearer token from `AadTokenProvider`, and the JSON-RPC protocol.
 
 > **Preview notice:** The Agents 365 Tools and MCP servers are part of the [Microsoft Agent 365 tooling servers preview](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview). These features are in preview, may change, and should not be used in production workloads.
 
@@ -22,13 +22,13 @@ Open-source SPFx webparts for exploring and testing the Microsoft 365 MCP server
 
 | Server | ID | Tools | Status |
 |--------|-----|-------|--------|
-| [User Profile](webparts/mcp365-user-profile/) | `mcp_MeServer` | 5 | Available |
-| SharePoint Lists | `mcp_SharePointListsTools` | 13 | Coming soon |
-| Outlook Calendar | `mcp_CalendarTools` | 13 | Coming soon |
-| Outlook Mail | `mcp_MailTools` | 21 | Planned |
-| SharePoint & OneDrive | `mcp_ODSPRemoteServer` | 17 | Planned |
-| Teams | `mcp_TeamsServer` | 26 | Planned |
-| Word | `mcp_WordServer` | 4 | Planned |
+| [Work IQ User](webparts/mcp365-user-profile/) | `mcp_MeServer` | 5 | Available |
+| Work IQ SharePoint | `mcp_SharePointRemoteServer` | 35 | Coming soon |
+| Work IQ Calendar | `mcp_CalendarTools` | 13 | Coming soon |
+| Work IQ Mail | `mcp_MailTools` | 21 | Planned |
+| Work IQ Teams | `mcp_TeamsServer` | 26 | Planned |
+| Work IQ OneDrive | `mcp_OneDriveRemoteServer` | — | Planned |
+| Work IQ Word | `mcp_WordServer` | 4 | Planned |
 
 ## What Each Webpart Does
 

@@ -38,10 +38,9 @@ import type {
 } from '../services/McpBrowserClient';
 import {
   ME_SERVER_ID,
-  ME_SERVER_TOOLS,
   ME_SERVER_EXAMPLES
 } from '../services/McpServerCatalog';
-import type { IMcpCatalogTool, IToolExample } from '../services/McpServerCatalog';
+import type { IToolExample } from '../services/McpServerCatalog';
 import { UserProfileShowcase } from './UserProfileShowcase';
 
 // ─── Preset Storage ─────────────────────────────────────────────────
@@ -285,6 +284,12 @@ const LogViewer: React.FC<ILogViewerProps> = ({ logs, filter, expandedIndex, onF
               const idx = logs.indexOf(item);
               if (idx !== -1) onToggleExpand(idx);
             }}
+            onActiveItemChanged={(item?: IMcpLogEntry) => {
+              if (item) {
+                const idx = logs.indexOf(item);
+                if (idx !== -1) onToggleExpand(idx);
+              }
+            }}
             onRenderRow={(rowProps, defaultRender) => {
               if (!rowProps || !defaultRender) return null;
               const idx = logs.indexOf(rowProps.item as IMcpLogEntry);
@@ -326,11 +331,27 @@ const LogViewer: React.FC<ILogViewerProps> = ({ logs, filter, expandedIndex, onF
           />
         </div>
       )}
-      <Stack horizontal tokens={{ childrenGap: 12 }} styles={{ root: { marginTop: 4 } }}>
+      <Stack horizontal tokens={{ childrenGap: 12 }} verticalAlign="center" styles={{ root: { marginTop: 4 } }}>
         {filteredLogs.length > 0 && (
           <Text variant="small" styles={{ root: { color: theme.palette.neutralTertiary, fontStyle: 'italic' } }}>
             Double-click a row to expand its data payload
           </Text>
+        )}
+        {filteredLogs.length > 0 && (
+          <DefaultButton
+            text="Copy logs"
+            iconProps={{ iconName: 'Copy' }}
+            onClick={() => {
+              const text = filteredLogs.map(e => {
+                const time = formatTime(e.timestamp);
+                const dir = e.direction === 'send' ? '→' : e.direction === 'receive' ? '←' : '·';
+                const data = e.data ? '\n  ' + (typeof e.data === 'string' ? e.data : JSON.stringify(e.data, null, 2).replace(/\n/g, '\n  ')) : '';
+                return `${time} ${e.level} ${dir} [${e.category}] ${e.method} ${e.message}${data}`;
+              }).join('\n');
+              void navigator.clipboard.writeText(text);
+            }}
+            styles={{ root: { minWidth: 0, padding: '0 8px', height: 24 } }}
+          />
         )}
         {filter && filteredLogs.length < logs.length && (
           <Text variant="small" styles={{ root: { color: theme.palette.neutralTertiary } }}>
@@ -570,13 +591,10 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
 
   // ── Derived values ──────────────────────────────────────────────
 
-  const isLiveSource = state.discoveredTools.length > 0;
-  const toolList: Array<IMcpTool | IMcpCatalogTool> = isLiveSource
-    ? state.discoveredTools
-    : ME_SERVER_TOOLS;
+  const toolList: IMcpTool[] = state.discoveredTools;
 
   const selectedTool = toolList.find(t => t.name === state.selectedToolName);
-  const selectedSchema = selectedTool?.inputSchema as IMcpCatalogTool['inputSchema'] | undefined;
+  const selectedSchema = selectedTool?.inputSchema as { type: string; properties: Record<string, { type: string; description: string }>; required?: string[] } | undefined;
   const selectedExamples: IToolExample[] = state.selectedToolName
     ? (ME_SERVER_EXAMPLES[state.selectedToolName] || [])
     : [];
@@ -735,7 +753,31 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
 
         const propDef = selectedSchema.properties[key];
         if (propDef && propDef.type === 'array') {
-          args[key] = value.split(',').map(v => v.trim()).filter(v => v !== '');
+          // Try parsing as JSON first (for array of objects like [{Key, Value}])
+          const trimmed = value.trim();
+          if (trimmed.indexOf('[') === 0) {
+            try {
+              args[key] = JSON.parse(trimmed);
+            } catch {
+              args[key] = value.split(',').map(v => v.trim()).filter(v => v !== '');
+            }
+          } else if (trimmed.indexOf('{') === 0) {
+            // Single object — wrap in array
+            try {
+              args[key] = [JSON.parse(trimmed)];
+            } catch {
+              args[key] = value.split(',').map(v => v.trim()).filter(v => v !== '');
+            }
+          } else {
+            args[key] = value.split(',').map(v => v.trim()).filter(v => v !== '');
+          }
+        } else if (propDef && propDef.type === 'object') {
+          // Try parsing as JSON object
+          try {
+            args[key] = JSON.parse(value.trim());
+          } catch {
+            args[key] = value;
+          }
         } else {
           args[key] = value;
         }
@@ -755,10 +797,14 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
         lastDurationMs: Date.now() - startTime
       }));
     } catch (err) {
+      const errMsg = (err as Error).message || '';
+      const isSessionExpired = errMsg.indexOf('HTTP 500') !== -1 || errMsg.indexOf('HTTP 401') !== -1 || errMsg.indexOf('Failed to fetch') !== -1;
       setState(prev => ({
         ...prev,
         isExecuting: false,
-        lastResponse: { error: (err as Error).message },
+        connectionState: isSessionExpired ? 'error' : prev.connectionState,
+        connectionError: isSessionExpired ? 'Session expired or server unavailable. Please disconnect and reconnect.' : prev.connectionError,
+        lastResponse: { error: errMsg },
         lastDurationMs: Date.now() - startTime
       }));
     }
@@ -796,11 +842,13 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
 
   // ── Styles ──────────────────────────────────────────────────────
 
-  const toolOptions: IDropdownOption[] = toolList.map(t => ({
-    key: t.name,
-    text: t.name,
-    title: t.description
-  }));
+  const toolOptions: IDropdownOption[] = [...toolList]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(t => ({
+      key: t.name,
+      text: t.name,
+      title: t.description
+    }));
 
   const exampleOptions: IDropdownOption[] = [];
   if (selectedExamples.length > 0) {
@@ -948,26 +996,28 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
 
         {/* ── Tools Tab ──────────────────────────────────────── */}
         <PivotItem headerText={`Tools (${toolList.length})`} itemIcon="Settings" itemKey="tools">
-          {/* Source indicator */}
-          <div style={{ marginTop: 8, marginBottom: 8 }}>
-            <span style={{
-              display: 'inline-block',
-              padding: '2px 10px',
-              borderRadius: 12,
-              fontSize: 11,
-              fontWeight: 600,
-              backgroundColor: isLiveSource ? '#dff6dd' : theme.palette.neutralLighter,
-              color: isLiveSource ? '#107c10' : theme.palette.neutralSecondary,
-              border: `1px solid ${isLiveSource ? '#a7e3a5' : theme.palette.neutralQuaternary}`
-            }}>
-              {isLiveSource ? 'Live from server (tools/list)' : 'Offline catalog (hardcoded)'}
-            </span>
-            {!isLiveSource && (
-              <Text variant="small" styles={{ root: { color: theme.palette.neutralTertiary, marginLeft: 8 } }}>
-                Connect to load live tool definitions from the MCP server
-              </Text>
-            )}
-          </div>
+          {/* Source indicator — only when connected */}
+          {isConnected && toolList.length > 0 && (
+            <div style={{ marginTop: 8, marginBottom: 8 }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '2px 10px',
+                borderRadius: 12,
+                fontSize: 11,
+                fontWeight: 600,
+                backgroundColor: '#dff6dd',
+                color: '#107c10',
+                border: '1px solid #a7e3a5'
+              }}>
+                Live from server (tools/list)
+              </span>
+            </div>
+          )}
+          {!isConnected && (
+            <Text variant="small" styles={{ root: { marginTop: 8, marginBottom: 8, color: theme.palette.neutralTertiary } }}>
+              Connect to discover and test tools.
+            </Text>
+          )}
 
           <Stack horizontal tokens={{ childrenGap: 16 }}>
             {/* Left: Tool Selection + Description + Schema */}
@@ -977,7 +1027,8 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
                 options={toolOptions}
                 selectedKey={state.selectedToolName}
                 onChange={handleToolSelect}
-                placeholder="Select a tool"
+                placeholder={isConnected ? 'Select a tool' : 'Connect first'}
+                disabled={!isConnected}
               />
 
               {/* Tool description from source */}
@@ -985,12 +1036,12 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
                 <div style={{
                   marginTop: 10,
                   padding: 8,
-                  backgroundColor: isLiveSource ? '#f6faf6' : theme.palette.neutralLighterAlt,
+                  backgroundColor: '#f6faf6',
                   borderRadius: 4,
-                  borderLeft: `3px solid ${isLiveSource ? '#107c10' : theme.palette.neutralTertiaryAlt}`
+                  borderLeft: `3px solid ${'#107c10'}`
                 }}>
                   <Text variant="small" styles={{ root: { fontWeight: 600, display: 'block', marginBottom: 4 } }}>
-                    Description {isLiveSource ? '(from server)' : '(from catalog)'}
+                    Description (from server)
                   </Text>
                   <Text variant="small" styles={{ root: { color: theme.palette.neutralPrimary, lineHeight: '1.4' } }}>
                     {selectedTool.description}
@@ -1061,7 +1112,7 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
               {selectedSchema && (
                 <>
                   <Label styles={{ root: { marginTop: 12 } }}>
-                    Input Schema {isLiveSource ? '(from server)' : '(from catalog)'}
+                    Input Schema (from server)
                   </Label>
                   <div style={{ ...codeBlockStyle, maxHeight: 250, fontSize: 11 }}>
                     {JSON.stringify(selectedSchema, null, 2)}
@@ -1074,7 +1125,7 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
             <Stack grow style={{ ...panelStyle, flex: 1 }}>
               <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 8 }}>
                 <Label>Parameters</Label>
-                {isLiveSource && (
+                {isConnected && (
                   <Text variant="small" styles={{ root: { color: theme.palette.neutralTertiary, fontStyle: 'italic' } }}>
                     Field descriptions come from the live server schema
                   </Text>
@@ -1090,7 +1141,9 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
                         key={paramName}
                         label={`${paramName}${isRequired ? ' *' : ''}`}
                         description={propDef.description}
-                        placeholder={propDef.type === 'array' ? 'Comma-separated values' : propDef.type}
+                        placeholder={propDef.type === 'array' ? 'JSON array or comma-separated values' : propDef.type === 'object' ? 'JSON object' : propDef.type}
+                        multiline={propDef.type === 'array' || propDef.type === 'object'}
+                        rows={propDef.type === 'array' || propDef.type === 'object' ? 3 : undefined}
                         value={state.parameterValues[paramName] || ''}
                         onChange={(_, val) => handleParamChange(paramName, val || '')}
                         required={isRequired}
@@ -1230,6 +1283,14 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
               </div>
             </PivotItem>
             <PivotItem headerText="Raw Response" itemIcon="Code">
+              {state.lastResponse && (
+                <DefaultButton
+                  text="Copy"
+                  iconProps={{ iconName: 'Copy' }}
+                  onClick={() => { void navigator.clipboard.writeText(JSON.stringify(state.lastResponse, null, 2)); }}
+                  styles={{ root: { minWidth: 0, padding: '0 8px', marginBottom: 4, marginTop: 4 } }}
+                />
+              )}
               <div style={codeBlockStyle}>
                 {state.lastResponse
                   ? JSON.stringify(state.lastResponse, null, 2)
@@ -1237,6 +1298,14 @@ export const UserProfileExplorer: React.FC<IUserProfileExplorerProps> = (props) 
               </div>
             </PivotItem>
             <PivotItem headerText="Request" itemIcon="Send">
+              {state.lastRequest && (
+                <DefaultButton
+                  text="Copy"
+                  iconProps={{ iconName: 'Copy' }}
+                  onClick={() => { void navigator.clipboard.writeText(JSON.stringify(state.lastRequest, null, 2)); }}
+                  styles={{ root: { minWidth: 0, padding: '0 8px', marginBottom: 4, marginTop: 4 } }}
+                />
+              )}
               <div style={codeBlockStyle}>
                 {state.lastRequest ? JSON.stringify(state.lastRequest, null, 2) : ''}
               </div>
