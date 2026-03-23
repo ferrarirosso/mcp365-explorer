@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "solutionName": "mcp365-sharepoint-lists",
+    "environment": "spo",
+    "packageManager": "npm",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "SharePointListsExplorer",
+    "componentDescription": "MCP365 Explorer: SharePoint Lists Server",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.22.1",
+    "libraryName": "mcp365-sharepoint-lists",
+    "libraryId": "a1b2c3d4-1111-2222-3333-444455556666"
+  }
+}

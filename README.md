@@ -12,7 +12,7 @@
 
 ## Summary
 
-Open-source SPFx webparts for exploring and testing the Microsoft 365 Work IQ MCP servers ([Agents 365 Tools](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview)). One webpart per server, each accompanied by a [blog post](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/).
+Open-source SPFx webparts for exploring and testing the Microsoft 365 [Work IQ](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) MCP servers — Microsoft's umbrella for all MCP capabilities in the M365 ecosystem. One webpart per server, each accompanied by a [blog post](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/).
 
 **Key finding:** You can call the Work IQ MCP servers **directly from an SPFx webpart** — no backend, no Azure Functions proxy, no additional infrastructure. Just `fetch`, a bearer token from `AadTokenProvider`, and the JSON-RPC protocol.
 
@@ -23,8 +23,8 @@ Open-source SPFx webparts for exploring and testing the Microsoft 365 Work IQ MC
 | Server | ID | Tools | Status |
 |--------|-----|-------|--------|
 | [Work IQ User](webparts/mcp365-user-profile/) | `mcp_MeServer` | 5 | Available |
-| Work IQ SharePoint | `mcp_SharePointRemoteServer` | 35 | Coming soon |
-| Work IQ Calendar | `mcp_CalendarTools` | 13 | Coming soon |
+| [Work IQ SharePoint](webparts/mcp365-sharepoint-lists/) | `mcp_SharePointRemoteServer` | 35 | Available |
+| [Work IQ Calendar](webparts/mcp365-calendar/) | `mcp_CalendarTools` | 13 | Available soon |
 | Work IQ Mail | `mcp_MailTools` | 21 | Planned |
 | Work IQ Teams | `mcp_TeamsServer` | 26 | Planned |
 | Work IQ OneDrive | `mcp_OneDriveRemoteServer` | — | Planned |
@@ -41,32 +41,45 @@ Open-source SPFx webparts for exploring and testing the Microsoft 365 Work IQ MC
 ## Prerequisites
 
 1. **Microsoft Frontier AI Program** — [Enrollment](https://adoption.microsoft.com/en-us/copilot/frontier-program/)
-2. **Agent 365 Service Principal** — Run [`New-Agent365ToolsServicePrincipalProdPublic.ps1`](scripts/New-Agent365ServicePrincipal.ps1) (one-time admin operation). See [Microsoft's guide](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/tooling#set-up-service-principal).
+2. **Work IQ Tools Service Principal** — Run [`New-Agent365ToolsServicePrincipalProdPublic.ps1`](scripts/New-Agent365ServicePrincipal.ps1) (one-time admin operation). See [Microsoft's guide](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/tooling#set-up-service-principal).
 3. **Power Platform Environment ID** — From [Power Platform admin center](https://admin.powerplatform.microsoft.com/). See [how to find it](https://learn.microsoft.com/en-us/power-platform/admin/determine-org-id-name).
 4. **Node.js 22+** and SPFx 1.22
 
+> **Note on service principal naming:** These webparts use `"resource": "Work IQ Tools"` in `package-solution.json`. If you ran the service principal script **before March 12, 2026**, your enterprise app is named "Agent 365 Tools" instead. In that case, change `"resource": "Work IQ Tools"` to `"resource": "Agent 365 Tools"` in each webpart's `config/package-solution.json` — otherwise the SharePoint admin center will reject the API permission request.
+
 ## Quick Start
+
+### User Profile (5 tools)
 
 ```bash
 cd webparts/mcp365-user-profile
 npm install
 npx heft build --clean
-
-# Package for deployment
-npx heft test --clean --production
-npx heft package-solution --production
+npx heft test --clean --production && npx heft package-solution --production
 ```
 
-Upload the `.sppkg` from `sharepoint/solution/` to your app catalog, approve the API permission, and add the webpart to a page.
+Upload `.sppkg`, approve `McpServers.Me.All`, add to a page.
+
+### SharePoint (35 tools)
+
+```bash
+cd webparts/mcp365-sharepoint-lists
+npm install
+npx heft build --clean
+npx heft test --clean --production && npx heft package-solution --production
+```
+
+Upload `.sppkg`, approve `McpServers.SharePoint.All`, add to a page.
 
 ## Blog Series
 
-- [MCP365 Explorer — A developer toolkit for Agents 365 Tools](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/) (introduction + User Profile)
+- [MCP365 Explorer — Introduction + User Profile](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/)
+- [MCP365 Explorer — Work IQ SharePoint: 35 tools](https://www.puntobello.ch/en/nello/mcp365_explorer_sharepoint_lists/)
 - More posts coming — one per server
 
 ## Resources
 
-- [Agent 365 Tooling Servers Overview](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview)
+- [Work IQ MCP Servers Overview](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview)
 - [Model Context Protocol Specification](https://modelcontextprotocol.io/)
 - [GriMoire — Visual AI Assistant for M365](https://grimoire-hie.github.io/)
 - [SPFx Documentation](https://learn.microsoft.com/en-us/sharepoint/dev/spfx/sharepoint-framework-overview)
