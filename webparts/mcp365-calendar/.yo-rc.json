@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "solutionName": "mcp365-calendar",
+    "environment": "spo",
+    "packageManager": "npm",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "CalendarExplorer",
+    "componentDescription": "MCP365 Explorer: Outlook Calendar Server",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.22.1",
+    "libraryName": "mcp365-calendar",
+    "libraryId": "d5e6f7a8-5555-6666-7777-888899990000"
+  }
+}

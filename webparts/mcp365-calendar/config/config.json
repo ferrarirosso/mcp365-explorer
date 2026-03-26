@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "calendar-explorer-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/calendarExplorer/CalendarExplorerWebPart.js",
+          "manifest": "./src/webparts/calendarExplorer/CalendarExplorerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CalendarExplorerWebPartStrings": "lib/webparts/calendarExplorer/loc/{locale}.js"
+  }
+}
