@@ -1,0 +1,21 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "a9b0c1d2-3456-7890-abcd-ef0123456780",
+  "alias": "MailExplorerWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "MCP365 Explorer" },
+    "title": { "default": "MCP365: Mail" },
+    "description": { "default": "Interactive explorer for the M365 MCP Outlook Mail server" },
+    "officeFabricIconFontName": "Mail",
+    "properties": {
+      "environmentId": ""
+    }
+  }]
+}

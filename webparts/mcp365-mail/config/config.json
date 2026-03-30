@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "mail-explorer-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/mailExplorer/MailExplorerWebPart.js",
+          "manifest": "./src/webparts/mailExplorer/MailExplorerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "MailExplorerWebPartStrings": "lib/webparts/mailExplorer/loc/{locale}.js"
+  }
+}

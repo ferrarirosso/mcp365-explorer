@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-mail-client-side-solution",
+    "id": "e7f8a9b0-1234-5678-9abc-def012345678",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Work IQ Tools",
+        "scope": "McpServers.Mail.All"
+      }
+    ],
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": { "default": "MCP365 Explorer: Outlook Mail Server" },
+      "longDescription": { "default": "Interactive explorer for the M365 MCP Outlook Mail server. Test and discover 21 tools for email management." },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 Mail Explorer",
+        "description": "Activates the MCP365 Mail Explorer web part.",
+        "id": "f8a9b0c1-2345-6789-abcd-ef0123456789",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-mail.sppkg"
+  }
+}

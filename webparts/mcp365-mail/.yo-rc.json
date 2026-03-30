@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "solutionName": "mcp365-mail",
+    "environment": "spo",
+    "packageManager": "npm",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "MailExplorer",
+    "componentDescription": "MCP365 Explorer: Outlook Mail Server",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.22.1",
+    "libraryName": "mcp365-mail",
+    "libraryId": "e7f8a9b0-1234-5678-9abc-def012345678"
+  }
+}
