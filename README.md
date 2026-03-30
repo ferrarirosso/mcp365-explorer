@@ -75,11 +75,13 @@ Upload `.sppkg`, approve `McpServers.SharePoint.All`, add to a page.
 
 - [MCP365 Explorer — Introduction + User Profile](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/)
 - [MCP365 Explorer — Work IQ SharePoint: 35 tools](https://www.puntobello.ch/en/nello/mcp365_explorer_sharepoint_lists/)
+- [MCP365 Explorer — Work IQ Calendar: events, meetings, and availability](https://www.puntobello.ch/en/nello/mcp365_explorer_calendar/)
+- [MCP365 Explorer — Work IQ Mail: search, draft, send, and reply](https://www.puntobello.ch/en/nello/mcp365_explorer_mail/)
 - More posts coming — one per server
 
 ## Resources
 
 - [Work IQ MCP Servers Overview](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview)
 - [Model Context Protocol Specification](https://modelcontextprotocol.io/)
-- [GriMoire — Visual AI Assistant for M365](https://grimoire-hie.github.io/)
+- [GriMoire](https://github.com/grimoire-hie)
 - [SPFx Documentation](https://learn.microsoft.com/en-us/sharepoint/dev/spfx/sharepoint-framework-overview)
