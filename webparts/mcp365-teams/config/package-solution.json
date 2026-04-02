@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-teams-client-side-solution",
+    "id": "b0c1d2e3-4567-8901-abcd-ef0123456789",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Work IQ Tools",
+        "scope": "McpServers.Teams.All"
+      }
+    ],
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": { "default": "MCP365 Explorer: Microsoft Teams Server" },
+      "longDescription": { "default": "Interactive explorer for the M365 MCP Microsoft Teams server. Test and discover 26 tools for chats, channels, and messages." },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 Teams Explorer",
+        "description": "Activates the MCP365 Teams Explorer web part.",
+        "id": "c1d2e3f4-5678-9012-bcde-f01234567890",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-teams.sppkg"
+  }
+}

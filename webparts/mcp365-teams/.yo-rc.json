@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "solutionName": "mcp365-teams",
+    "environment": "spo",
+    "packageManager": "npm",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "TeamsExplorer",
+    "componentDescription": "MCP365 Explorer: Microsoft Teams Server",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.22.1",
+    "libraryName": "mcp365-teams",
+    "libraryId": "b0c1d2e3-4567-8901-abcd-ef0123456789"
+  }
+}

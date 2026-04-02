@@ -26,7 +26,7 @@ Open-source SPFx webparts for exploring and testing the Microsoft 365 [Work IQ](
 | [Work IQ SharePoint](webparts/mcp365-sharepoint-lists/) | `mcp_SharePointRemoteServer` | 35 | Available |
 | [Work IQ Calendar](webparts/mcp365-calendar/) | `mcp_CalendarTools` | 13 | Available |
 | [Work IQ Mail](webparts/mcp365-mail/) | `mcp_MailTools` | 22 | Available |
-| Work IQ Teams | `mcp_TeamsServer` | 26 | Planned |
+| [Work IQ Teams](webparts/mcp365-teams/) | `mcp_TeamsServer` | 28 | Available |
 | Work IQ OneDrive | `mcp_OneDriveRemoteServer` | — | Planned |
 | Work IQ Word | `mcp_WordServer` | 4 | Planned |
 
@@ -77,6 +77,7 @@ Upload `.sppkg`, approve `McpServers.SharePoint.All`, add to a page.
 - [MCP365 Explorer — Work IQ SharePoint: 35 tools](https://www.puntobello.ch/en/nello/mcp365_explorer_sharepoint_lists/)
 - [MCP365 Explorer — Work IQ Calendar: events, meetings, and availability](https://www.puntobello.ch/en/nello/mcp365_explorer_calendar/)
 - [MCP365 Explorer — Work IQ Mail: search, draft, send, and reply](https://www.puntobello.ch/en/nello/mcp365_explorer_mail/)
+- [MCP365 Explorer — Work IQ Teams: teams, channels, and messages](https://www.puntobello.ch/en/nello/mcp365_explorer_teams/)
 - More posts coming — one per server
 
 ## Resources
