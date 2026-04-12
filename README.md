@@ -27,7 +27,7 @@ Open-source SPFx webparts for exploring and testing the Microsoft 365 [Work IQ](
 | [Work IQ Calendar](webparts/mcp365-calendar/) | `mcp_CalendarTools` | 13 | Available |
 | [Work IQ Mail](webparts/mcp365-mail/) | `mcp_MailTools` | 22 | Available |
 | [Work IQ Teams](webparts/mcp365-teams/) | `mcp_TeamsServer` | 28 | Available |
-| Work IQ OneDrive | `mcp_OneDriveRemoteServer` | — | Planned |
+| [Work IQ OneDrive](webparts/mcp365-onedrive/) | `mcp_OneDriveRemoteServer` | 13 | Available |
 | Work IQ Word | `mcp_WordServer` | 4 | Planned |
 
 ## What Each Webpart Does

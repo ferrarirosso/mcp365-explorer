@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "onedrive-explorer-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/oneDriveExplorer/OneDriveExplorerWebPart.js",
+          "manifest": "./src/webparts/oneDriveExplorer/OneDriveExplorerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "OneDriveExplorerWebPartStrings": "lib/webparts/oneDriveExplorer/loc/{locale}.js"
+  }
+}

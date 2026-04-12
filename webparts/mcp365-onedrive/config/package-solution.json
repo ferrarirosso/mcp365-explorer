@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-onedrive-client-side-solution",
+    "id": "0ec30faa-31ec-4a12-b91a-c570dc204997",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Work IQ Tools",
+        "scope": "McpServers.OneDrive.All"
+      }
+    ],
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": { "default": "MCP365 Explorer: Microsoft OneDrive Server" },
+      "longDescription": { "default": "Interactive explorer for the M365 MCP Microsoft OneDrive server. Discover and test 13 tools for browsing, searching, reading, and managing files and folders in your personal OneDrive." },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 OneDrive Explorer",
+        "description": "Activates the MCP365 OneDrive Explorer web part.",
+        "id": "92fc4fe6-0529-4e84-bd76-bb842dbed670",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-onedrive.sppkg"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "@microsoft/spfx-web-build-rig/profiles/default/config/jest.config.json",
+  "moduleNameMapper": {
+    "^OneDriveExplorerWebPartStrings$": "<rootDir>/src/webparts/oneDriveExplorer/loc/__mocks__/OneDriveExplorerWebPartStrings.js"
+  }
+}

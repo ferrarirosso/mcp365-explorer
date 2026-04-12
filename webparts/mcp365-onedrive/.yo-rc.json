@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "solutionName": "mcp365-onedrive",
+    "environment": "spo",
+    "packageManager": "npm",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "OneDriveExplorer",
+    "componentDescription": "MCP365 Explorer: Microsoft OneDrive Server",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.22.1",
+    "libraryName": "mcp365-onedrive",
+    "libraryId": "0ec30faa-31ec-4a12-b91a-c570dc204997"
+  }
+}
