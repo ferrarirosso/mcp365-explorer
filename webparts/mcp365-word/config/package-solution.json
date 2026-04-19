@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-word-client-side-solution",
+    "id": "199bfda5-1425-47d9-a73d-22c83ba7bb01",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Work IQ Tools",
+        "scope": "McpServers.Word.All"
+      }
+    ],
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": { "default": "MCP365 Explorer: Microsoft Word Server" },
+      "longDescription": { "default": "Interactive explorer for the M365 MCP Microsoft Word server. Test and discover 4 tools for creating documents, reading content, and adding comments." },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 Word Explorer",
+        "description": "Activates the MCP365 Word Explorer web part.",
+        "id": "d395e1ff-9eac-4aff-8ea8-d54d2a270b7f",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-word.sppkg"
+  }
+}

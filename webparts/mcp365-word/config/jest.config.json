@@ -1,0 +1,6 @@
+{
+  "extends": "@microsoft/spfx-web-build-rig/profiles/default/config/jest.config.json",
+  "moduleNameMapper": {
+    "^WordExplorerWebPartStrings$": "<rootDir>/src/webparts/wordExplorer/loc/__mocks__/WordExplorerWebPartStrings.js"
+  }
+}
