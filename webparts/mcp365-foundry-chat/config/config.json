@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "foundry-chat-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/foundryChat/FoundryChatWebPart.js",
+          "manifest": "./src/webparts/foundryChat/FoundryChatWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "FoundryChatWebPartStrings": "lib/webparts/foundryChat/loc/{locale}.js"
+  }
+}

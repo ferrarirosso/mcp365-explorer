@@ -1,0 +1,19 @@
+{
+  "name": "mcp365-foundry-chat-backend",
+  "version": "1.0.0",
+  "description": "Azure Functions proxy for the MCP365 Foundry Chat showcase webpart. Routes browser chat completions to Microsoft Foundry with managed identity, CORS lockdown, and rate limiting.",
+  "type": "module",
+  "main": "src/functions/*.js",
+  "private": true,
+  "scripts": {
+    "start": "func start",
+    "setup-local": "npx -y github:ferrarirosso/spfx-foundry-deploy setup-local --config ../deploy.config.json --webpart .."
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.0",
+    "@azure/identity": "^4.6.0"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^4.x"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "mcp365-explorer",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/powershell:1": {
+      "version": "latest"
+    }
+  },
+
+  "postCreateCommand": "npm install -g azure-functions-core-tools@4 --unsafe-perm true",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-azurefunctions",
+        "ms-vscode.PowerShell",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.eol": "\n"
+      }
+    }
+  },
+
+  "forwardPorts": [4323, 7071],
+  "portsAttributes": {
+    "4323": { "label": "SPFx workbench (foundry-chat)", "onAutoForward": "silent" },
+    "7071": { "label": "Azure Functions runtime (func start)", "onAutoForward": "silent" }
+  },
+
+  "remoteUser": "node",
+  "containerEnv": {
+    "FORCE_COLOR": "1"
+  }
+}

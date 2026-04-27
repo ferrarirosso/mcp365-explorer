@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-foundry-chat-client-side-solution",
+    "id": "b260244e-ea10-4b37-a24d-3fa326bce755",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "MCP365 Chat: Foundry Showcase"
+      },
+      "longDescription": {
+        "default": "Minimal chat against a protected Foundry-backed Function App proxy. Demonstrates the deployment + SPFx auth chain. No MCP, no tool-calling — the showcase webpart's only job is to prove the backend wiring works end-to-end."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 Foundry Chat",
+        "description": "Activates the MCP365 Foundry Chat showcase web part.",
+        "id": "4542c73b-b755-4133-8995-49af27c191b8",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-foundry-chat.sppkg"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "@microsoft/spfx-web-build-rig/profiles/default/config/jest.config.json",
+  "moduleNameMapper": {
+    "^FoundryChatWebPartStrings$": "<rootDir>/src/webparts/foundryChat/loc/__mocks__/FoundryChatWebPartStrings.js"
+  }
+}
