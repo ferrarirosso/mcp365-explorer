@@ -1,0 +1,11 @@
+.git*
+.gitignore
+.vscode
+.DS_Store
+node_modules
+local.settings.json
+test
+tsconfig.json
+README.md
+scripts
+*.log

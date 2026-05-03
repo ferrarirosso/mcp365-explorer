@@ -1,0 +1,56 @@
+{
+  "name": "mcp365-lists-chat",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=22.14.0 < 23.0.0"
+  },
+  "scripts": {
+    "build": "heft test --clean --production && heft package-solution --production",
+    "start": "heft start --clean",
+    "clean": "heft clean",
+    "deploy": "node -e \"if(process.env.npm_config_dry_run==='true'){console.error('Use \\\"npm run deploy:dry-run\\\" — npm consumes --dry-run before npx sees it, breaking the GitHub install.');process.exit(2)}\" && npx -y github:ferrarirosso/spfx-foundry-deploy deploy --config ./deploy.config.json",
+    "deploy:dry-run": "npx -y github:ferrarirosso/spfx-foundry-deploy deploy --config ./deploy.config.json --dry-run",
+    "setup": "npx -y github:ferrarirosso/spfx-foundry-deploy setup --config ./deploy.config.json",
+    "teardown": "npx -y github:ferrarirosso/spfx-foundry-deploy teardown --config ./deploy.config.json"
+  },
+  "dependencies": {
+    "@ferrarirosso/mcp-browser-client": "^0.1.0",
+    "@ferrarirosso/mcp-spfx": "^0.1.0",
+    "@fluentui/react": "^8.106.4",
+    "@microsoft/sp-component-base": "1.22.1",
+    "@microsoft/sp-core-library": "1.22.1",
+    "@microsoft/sp-http": "1.22.1",
+    "@microsoft/sp-lodash-subset": "1.22.1",
+    "@microsoft/sp-office-ui-fabric-core": "1.22.1",
+    "@microsoft/sp-property-pane": "1.22.1",
+    "@microsoft/sp-webpart-base": "1.22.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "tslib": "2.3.1"
+  },
+  "devDependencies": {
+    "@microsoft/eslint-config-spfx": "1.22.1",
+    "@microsoft/eslint-plugin-spfx": "1.22.1",
+    "@microsoft/sp-module-interfaces": "1.22.1",
+    "@microsoft/spfx-heft-plugins": "1.22.1",
+    "@microsoft/spfx-web-build-rig": "1.22.1",
+    "@rushstack/eslint-config": "4.5.2",
+    "@rushstack/heft": "1.1.2",
+    "@types/heft-jest": "1.0.2",
+    "@types/react": "17.0.45",
+    "@types/react-dom": "17.0.17",
+    "@types/webpack-env": "~1.15.2",
+    "@typescript-eslint/parser": "8.46.2",
+    "css-loader": "~7.1.2",
+    "eslint": "8.57.1",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "typescript": "~5.8.0"
+  },
+  "overrides": {
+    "@rushstack/heft": "1.1.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.45"
+  }
+}

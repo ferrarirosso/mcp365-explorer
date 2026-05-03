@@ -17,7 +17,7 @@
 Open-source SPFx webparts for exploring Microsoft 365's MCP and Foundry surface. Two patterns:
 
 - **[Work IQ](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) MCP servers, called directly from an SPFx webpart** — no backend, no proxy, just `fetch` + `AadTokenProvider` + JSON-RPC. One webpart per server.
-- **Microsoft Foundry behind a protected Function App** — keyless backend, Easy Auth + managed identity, deployed in one command via [`spfx-foundry-deploy`](https://github.com/ferrarirosso/spfx-foundry-deploy). Starts with `mcp365-foundry-chat` (chat-only showcase).
+- **Microsoft Foundry behind a protected Function App** — keyless backend, Easy Auth + managed identity, deployed in one command via [`spfx-foundry-deploy`](https://github.com/ferrarirosso/spfx-foundry-deploy). Two webparts: `mcp365-foundry-chat` (chat-only auth-chain showcase) and `mcp365-lists-chat` (chat + SharePoint Lists MCP — the first **agentic** webpart in the series).
 
 Each webpart pairs with a [blog post](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/).
 
@@ -46,6 +46,7 @@ Foundry-backed Azure Function App, keyless to Foundry, Easy Auth-protected from 
 | Webpart | Backend | Purpose | Status |
 |---------|---------|---------|--------|
 | [mcp365-foundry-chat](webparts/mcp365-foundry-chat/) | Foundry (chat-completions) | Chat-only showcase — proves the deployment + auth chain end-to-end | Available |
+| [mcp365-lists-chat](webparts/mcp365-lists-chat/) | Foundry + Work IQ SharePoint MCP | Agentic chat — LLM picks tools from `tools/list` and executes them via MCP | Available |
 
 ## What Each Webpart Does
 
@@ -108,6 +109,17 @@ npm start             # workbench opens with the property pane pre-filled
 
 `npm run teardown` removes everything — resource group, soft-delete purge, Entra app — so you can experiment without lingering infra.
 
+### Lists chat (agentic — Foundry + Work IQ SharePoint MCP)
+
+```bash
+cd webparts/mcp365-lists-chat
+npm install
+npm run deploy        # provisions the proxy + auto-wires serve.json (~5 min)
+npm start             # workbench opens with backendUrl + backendApiResource pre-filled
+```
+
+After deploy, set the **Environment ID** in the property pane (Power Platform env GUID — `pac admin list`). Approve `McpServers.SharePoint.All` in SharePoint admin centre to grant the MCP scope. Same deployer as `mcp365-foundry-chat`; the difference is what the chat is connected to.
+
 ## Blog Series
 
 - [MCP365 Explorer — Introduction + User Profile](https://www.puntobello.ch/en/nello/mcp365_explorer_intro/)
@@ -115,8 +127,8 @@ npm start             # workbench opens with the property pane pre-filled
 - [MCP365 Explorer — Work IQ Calendar: events, meetings, and availability](https://www.puntobello.ch/en/nello/mcp365_explorer_calendar/)
 - [MCP365 Explorer — Work IQ Mail: search, draft, send, and reply](https://www.puntobello.ch/en/nello/mcp365_explorer_mail/)
 - [MCP365 Explorer — Work IQ Teams: teams, channels, and messages](https://www.puntobello.ch/en/nello/mcp365_explorer_teams/)
-- MCP365 Explorer — Foundry chat showcase + protected backend deployer — *coming with the next post*
-- More posts coming — one per server
+- [MCP365 Explorer — From buttons to language: chat with the SharePoint Lists MCP server](https://www.puntobello.ch/en/nello/mcp365_explorer_lists_chat/)
+- More posts coming — agentic workflows across the 7 Work IQ servers
 
 ## Resources
 

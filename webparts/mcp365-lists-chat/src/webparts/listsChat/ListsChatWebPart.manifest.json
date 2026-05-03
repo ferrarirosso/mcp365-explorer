@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "e3f4a5b6-1111-2222-3333-444455556679",
+  "alias": "ListsChatWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "MCP365 Explorer" },
+    "title": { "default": "MCP365 Chat: SharePoint Lists" },
+    "description": { "default": "Natural-language chat over the SharePoint Lists MCP server. The LLM picks tools and fills arguments." },
+    "officeFabricIconFontName": "Robot",
+    "properties": {
+      "environmentId": "",
+      "backendUrl": "",
+      "backendApiResource": "",
+      "showTracePane": true
+    }
+  }]
+}

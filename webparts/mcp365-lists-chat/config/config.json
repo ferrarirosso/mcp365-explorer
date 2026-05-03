@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "lists-chat-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/listsChat/ListsChatWebPart.js",
+          "manifest": "./src/webparts/listsChat/ListsChatWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ListsChatWebPartStrings": "lib/webparts/listsChat/loc/{locale}.js"
+  }
+}

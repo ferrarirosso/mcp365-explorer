@@ -1,0 +1,6 @@
+{
+  "extends": "@microsoft/spfx-web-build-rig/profiles/default/config/jest.config.json",
+  "moduleNameMapper": {
+    "^ListsChatWebPartStrings$": "<rootDir>/src/webparts/listsChat/loc/__mocks__/ListsChatWebPartStrings.js"
+  }
+}

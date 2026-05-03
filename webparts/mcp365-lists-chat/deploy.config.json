@@ -1,0 +1,17 @@
+{
+  "$schema": "../../deploy/deploy.config.schema.json",
+  "slug": "lists-chat",
+  "profile": "chat-completions",
+  "namePrefix": "mcp365-lists-chat",
+  "location": "swedencentral",
+  "model": {
+    "name": "gpt-5-mini"
+  },
+  "requestLimits": {
+    "perMinute": 30,
+    "perDay": 1000
+  },
+  "serveProperties": {
+    "environmentId": ""
+  }
+}

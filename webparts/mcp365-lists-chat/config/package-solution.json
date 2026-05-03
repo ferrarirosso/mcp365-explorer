@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mcp365-lists-chat-client-side-solution",
+    "id": "c1d2e3f4-1111-2222-3333-444455556677",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Work IQ Tools",
+        "scope": "McpServers.SharePoint.All"
+      }
+    ],
+    "developer": {
+      "name": "MCP365 Explorer",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "MCP365 Chat: SharePoint Lists"
+      },
+      "longDescription": {
+        "default": "Natural-language chat over the M365 SharePoint Lists MCP server. The LLM picks tools and fills arguments; the webpart executes them via MCP."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "MCP365 Lists Chat",
+        "description": "Activates the MCP365 Lists Chat web part.",
+        "id": "d2e3f4a5-1111-2222-3333-444455556678",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mcp365-lists-chat.sppkg"
+  }
+}
